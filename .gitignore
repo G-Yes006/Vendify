@@ -1,0 +1,51 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# TypeScript
+*.tsbuildinfo
+
+# Prisma
+/prisma/migrations
+/prisma/dev.db
+
+# Environment variables
+.env
+
+# Build output
+/dist
+/build
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Coverage reports
+coverage/
+
+# Jest
+jest.config.js
+jest.config.ts
+
+# ts-jest
+tsconfig.jest.json
+
+# Debugging
+*.pid
+*.seed
+
+# MacOS
+*.DS_Store
+
+# Windows
+Thumbs.db

@@ -1,0 +1,148 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  stock       Int
+  images      String[]
+  variants    Variant[]
+  categoryId  Int
+  category    Category   @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // Add this relation for OrderItem
+  orderItems  OrderItem[]
+  
+  // Add this relation for CartItem
+  cartItems   CartItem[]
+}
+
+model Variant {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  name      String
+  value     String
+}
+
+model Category {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  products Product[]
+}
+
+model Address {
+  id        Int     @id @default(autoincrement())
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int
+  type      String  // 'billing', 'shipping'
+  address   String
+  city      String
+  state     String
+  country   String
+  zipCode   String
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  user        User        @relation(fields: [userId], references: [id])
+  userId      Int
+  items       OrderItem[]
+  totalAmount Float
+  status      OrderStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  // Add this relation for Payment
+  payment     Payment?
+}
+
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int
+  price     Float
+}
+
+model Payment {
+  id          Int       @id @default(autoincrement())
+  order       Order     @relation(fields: [orderId], references: [id])
+  orderId     Int       @unique  // Add @unique here to indicate a one-to-one relation
+  amount      Float
+  status      String    @default("pending")
+  method      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+
+model User {
+  id            Int        @id @default(autoincrement())
+  name          String
+  email         String     @unique
+  password      String
+  role          String     @default("user")
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  addresses     Address[]
+  orders        Order[]
+  activityLogs  ActivityLog[]
+  cart          Cart?      // Add this field for the one-to-one relation
+}
+
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique // Ensure this is unique for one-to-one relation
+  user      User     @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id        Int    @id @default(autoincrement())
+  cart      Cart   @relation(fields: [cartId], references: [id])
+  cartId    Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int    @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  action    String
+  createdAt DateTime  @default(now())
+}
+
+model Report {
+  id         Int       @id @default(autoincrement())
+  type       String
+  generatedAt DateTime  @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
