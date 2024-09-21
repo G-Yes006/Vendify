@@ -6,7 +6,7 @@ class ProductService {
     return await productRepository.findAll();
   }
 
-  async getProductById(productId: number): Promise<Product | null> {
+  async getProductById(productId: string): Promise<Product | null> {
     return await productRepository.findById(productId);
   }
 
@@ -22,13 +22,13 @@ class ProductService {
   }
 
   async updateProduct(
-    productId: number,
+    productId: string,
     data: Partial<Product>
   ): Promise<Product> {
     return await productRepository.updateProduct(productId, data);
   }
 
-  async deleteProduct(productId: number): Promise<void> {
+  async deleteProduct(productId: string): Promise<void> {
     return await productRepository.deleteProduct(productId);
   }
 }

@@ -1,7 +1,7 @@
 import prisma from '../config/db';
 
 class OrderRepository {
-  async createOrder(userId: number, orderData: any) {
+  async createOrder(userId: string, orderData: any) {
     return await prisma.order.create({
       data: {
         userId,
@@ -17,10 +17,23 @@ class OrderRepository {
     });
   }
 
-  async getOrderById(orderId: number) {
+  async getOrderById(orderId: string) {
     return await prisma.order.findUnique({
       where: { id: orderId },
       include: { items: { include: { product: true } } },
+    });
+  }
+
+  async getOrdersByUserId(userId: string) {
+    return await prisma.order.findMany({
+      where: { userId },
+      include: { items: true },
+    });
+  }
+
+  async addItemToOrder(orderId: string, productId: string, quantity: number) {
+    return await prisma.orderItem.create({
+      data: { orderId, productId, quantity },
     });
   }
 

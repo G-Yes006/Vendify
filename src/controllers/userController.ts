@@ -15,7 +15,7 @@ export const createUser = async (req: Request, res: Response) => {
 export const getUserDetails = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
-    const userDetails = await userService.getUserDetails(parseInt(userId));
+    const userDetails = await userService.getUserDetails(userId);
     res.json(userDetails);
   } catch (err) {
     handleError(res, err);
@@ -26,11 +26,7 @@ export const addUserAddress = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
     const { type, addressData } = req.body;
-    const address = await userService.addUserAddress(
-      parseInt(userId),
-      type,
-      addressData
-    );
+    const address = await userService.addUserAddress(userId, type, addressData);
     res.status(201).json(address);
   } catch (err) {
     handleError(res, err);
@@ -41,7 +37,7 @@ export const logUserActivity = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
     const { action } = req.body;
-    const log = await userService.logUserActivity(parseInt(userId), action);
+    const log = await userService.logUserActivity(userId, action);
     res.status(201).json(log);
   } catch (err) {
     handleError(res, err);
@@ -51,10 +47,7 @@ export const logUserActivity = async (req: Request, res: Response) => {
 export const updateUserRole = async (req: Request, res: Response) => {
   try {
     const { userId, role } = req.body;
-    const updatedUser = await userService.updateUserRole(
-      parseInt(userId),
-      role
-    );
+    const updatedUser = await userService.updateUserRole(userId, role);
     res.json(updatedUser);
   } catch (err) {
     handleError(res, err);

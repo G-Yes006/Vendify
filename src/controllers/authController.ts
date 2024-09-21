@@ -19,8 +19,8 @@ export class AuthController {
     const { email, password } = req.body;
 
     try {
-      const token = await AuthService.login(email, password);
-      return res.status(200).json({ message: 'Login successful', token });
+      const data = await AuthService.login(email, password);
+      return res.status(200).json({ message: 'Login successful', data });
     } catch (error) {
       return res.status(400).json({ message: error.message });
     }

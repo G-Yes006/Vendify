@@ -20,7 +20,7 @@ export class AuthRepository {
     });
   }
 
-  static async findUserById(userId: number): Promise<User | null> {
+  static async findUserById(userId: string): Promise<User | null> {
     // Make sure `userId` type matches the schema
     return prisma.user.findUnique({ where: { id: userId } });
   }

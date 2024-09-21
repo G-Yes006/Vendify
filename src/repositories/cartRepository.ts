@@ -1,20 +1,20 @@
 import prisma from '../config/db';
 
 class CartRepository {
-  async getCartByUserId(userId: number) {
+  async getCartByUserId(userId: string) {
     return await prisma.cart.findUnique({
       where: { userId },
       include: { items: { include: { product: true } } },
     });
   }
 
-  async createCart(userId: number) {
+  async createCart(userId: string) {
     return await prisma.cart.create({
       data: { userId },
     });
   }
 
-  async addItemToCart(cartId: number, productId: number, quantity: number) {
+  async addItemToCart(cartId: string, productId: string, quantity: number) {
     const existingItem = await prisma.cartItem.findFirst({
       where: { cartId, productId },
     });
@@ -31,13 +31,13 @@ class CartRepository {
     });
   }
 
-  async removeItemFromCart(cartId: number, productId: number) {
+  async removeItemFromCart(cartId: string, productId: string) {
     return await prisma.cartItem.deleteMany({
       where: { cartId, productId },
     });
   }
 
-  async clearCart(cartId: number) {
+  async clearCart(cartId: string) {
     return await prisma.cartItem.deleteMany({
       where: { cartId },
     });

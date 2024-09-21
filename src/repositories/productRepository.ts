@@ -8,14 +8,14 @@ class ProductRepository {
     });
   }
 
-  async findById(productId: number): Promise<Product | null> {
+  async findById(productId: string): Promise<Product | null> {
     return await prisma.product.findUnique({
       where: { id: productId },
       include: { variants: true, categories: true },
     });
   }
 
-  async getProductById(productId: number) {
+  async getProductById(productId: string) {
     return await prisma.product.findUnique({
       where: { id: productId },
       include: { categories: true, tags: true },
@@ -45,7 +45,7 @@ class ProductRepository {
   }
 
   async updateProduct(
-    productId: number,
+    productId: string,
     data: Partial<Product>
   ): Promise<Product> {
     return await prisma.product.update({
@@ -54,7 +54,7 @@ class ProductRepository {
     });
   }
 
-  async deleteProduct(productId: number): Promise<void> {
+  async deleteProduct(productId: string): Promise<void> {
     await prisma.product.delete({ where: { id: productId } });
   }
 }

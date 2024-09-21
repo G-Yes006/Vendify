@@ -7,19 +7,19 @@ class UserService {
     return await userRepository.createUser(name, email, hashedPassword);
   }
 
-  async getUserDetails(userId: number) {
+  async getUserDetails(userId: string) {
     return await userRepository.getUserById(userId);
   }
 
-  async addUserAddress(userId: number, type: string, addressData: any) {
+  async addUserAddress(userId: string, type: string, addressData: any) {
     return await userRepository.addUserAddress(userId, type, addressData);
   }
 
-  async logUserActivity(userId: number, action: string) {
+  async logUserActivity(userId: string, action: string) {
     return await userRepository.logUserActivity(userId, action);
   }
 
-  async updateUserRole(userId: number, role: string) {
+  async updateUserRole(userId: string, role: string) {
     return await userRepository.updateUserRole(userId, role);
   }
 

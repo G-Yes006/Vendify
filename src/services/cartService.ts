@@ -2,7 +2,7 @@ import cartRepository from '../repositories/cartRepository';
 import productRepository from '../repositories/productRepository';
 
 class CartService {
-  async getCartByUserId(userId: number) {
+  async getCartByUserId(userId: string) {
     let cart = await cartRepository.getCartByUserId(userId);
     if (!cart) {
       cart = await cartRepository.createCart(userId);
@@ -10,7 +10,7 @@ class CartService {
     return cart;
   }
 
-  async addItemToCart(userId: number, productId: number, quantity: number) {
+  async addItemToCart(userId: string, productId: string, quantity: number) {
     const cart = await this.getCartByUserId(userId);
     const product = await productRepository.getProductById(productId);
 
@@ -21,12 +21,12 @@ class CartService {
     return await cartRepository.addItemToCart(cart.id, productId, quantity);
   }
 
-  async removeItemFromCart(userId: number, productId: number) {
+  async removeItemFromCart(userId: string, productId: string) {
     const cart = await this.getCartByUserId(userId);
     return await cartRepository.removeItemFromCart(cart.id, productId);
   }
 
-  async clearCart(userId: number) {
+  async clearCart(userId: string) {
     const cart = await this.getCartByUserId(userId);
     return await cartRepository.clearCart(cart.id);
   }

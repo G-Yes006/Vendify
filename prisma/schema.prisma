@@ -8,80 +8,76 @@ generator client {
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(uuid())
   name        String
   description String?
   price       Float
   stock       Int
   images      String[]
   variants    Variant[]
-  categoryId  Int
+  categoryId  String
   category    Category   @relation(fields: [categoryId], references: [id])
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
-  // Add this relation for OrderItem
   orderItems  OrderItem[]
-  
-  // Add this relation for CartItem
   cartItems   CartItem[]
 }
 
 model Variant {
-  id        Int      @id @default(autoincrement())
-  productId Int
+  id        String   @id @default(uuid())
+  productId String
   product   Product  @relation(fields: [productId], references: [id])
   name      String
   value     String
 }
 
 model Category {
-  id       Int        @id @default(autoincrement())
-  name     String     @unique
+  id       String    @id @default(uuid())
+  name     String    @unique
   products Product[]
 }
 
 model Address {
-  id        Int     @id @default(autoincrement())
-  user      User    @relation(fields: [userId], references: [id])
-  userId    Int
-  type      String  // 'billing', 'shipping'
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  type      String   // 'billing', 'shipping'
   address   String
   city      String
   state     String
   country   String
   zipCode   String
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 }
 
 model Order {
-  id          Int         @id @default(autoincrement())
-  user        User        @relation(fields: [userId], references: [id])
-  userId      Int
+  id          String    @id @default(uuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
   items       OrderItem[]
   totalAmount Float
   status      OrderStatus @default(PENDING)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   
-  // Add this relation for Payment
   payment     Payment?
 }
 
 model OrderItem {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   order     Order    @relation(fields: [orderId], references: [id])
-  orderId   Int
+  orderId   String
   product   Product  @relation(fields: [productId], references: [id])
-  productId Int
+  productId String
   quantity  Int
   price     Float
 }
 
 model Payment {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(uuid())
   order       Order     @relation(fields: [orderId], references: [id])
-  orderId     Int       @unique  // Add @unique here to indicate a one-to-one relation
+  orderId     String    @unique
   amount      Float
   status      String    @default("pending")
   method      String
@@ -89,25 +85,23 @@ model Payment {
   updatedAt   DateTime  @updatedAt
 }
 
-
 model User {
-  id            Int        @id @default(autoincrement())
+  id            String      @id @default(uuid())
   name          String
-  email         String     @unique
+  email         String      @unique
   password      String
-  role          String     @default("user")
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  role          String      @default("user")
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   addresses     Address[]
   orders        Order[]
   activityLogs  ActivityLog[]
-  cart          Cart?      // Add this field for the one-to-one relation
+  cart          Cart?       // Add this field for the one-to-one relation
 }
 
-
 model Cart {
-  id        Int      @id @default(autoincrement())
-  userId    Int      @unique // Ensure this is unique for one-to-one relation
+  id        String   @id @default(uuid())
+  userId    String   @unique
   user      User     @relation(fields: [userId], references: [id])
   items     CartItem[]
   createdAt DateTime @default(now())
@@ -115,28 +109,28 @@ model Cart {
 }
 
 model CartItem {
-  id        Int    @id @default(autoincrement())
-  cart      Cart   @relation(fields: [cartId], references: [id])
-  cartId    Int
-  product   Product @relation(fields: [productId], references: [id])
-  productId Int
-  quantity  Int    @default(1)
+  id        String   @id @default(uuid())
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  cartId    String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int      @default(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model ActivityLog {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   user      User     @relation(fields: [userId], references: [id])
-  userId    Int
+  userId    String
   action    String
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
 }
 
 model Report {
-  id         Int       @id @default(autoincrement())
+  id         String   @id @default(uuid())
   type       String
-  generatedAt DateTime  @default(now())
+  generatedAt DateTime @default(now())
 }
 
 enum OrderStatus {

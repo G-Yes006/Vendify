@@ -11,10 +11,18 @@ class UserRepository {
     });
   }
 
-  async getUserById(userId: number) {
+  async getUserById(userId: string) {
     return await prisma.user.findUnique({
       where: { id: userId },
-      include: {
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+        password: false, // Explicitly exclude `password`
+        // Related models
         addresses: true,
         orders: true,
         activityLogs: true,
@@ -22,7 +30,7 @@ class UserRepository {
     });
   }
 
-  async addUserAddress(userId: number, type: string, addressData: any) {
+  async addUserAddress(userId: string, type: string, addressData: any) {
     return await prisma.address.create({
       data: {
         userId,
@@ -32,7 +40,7 @@ class UserRepository {
     });
   }
 
-  async logUserActivity(userId: number, action: string) {
+  async logUserActivity(userId: string, action: string) {
     return await prisma.activityLog.create({
       data: {
         userId,
@@ -41,7 +49,7 @@ class UserRepository {
     });
   }
 
-  async updateUserRole(userId: number, role: string) {
+  async updateUserRole(userId: string, role: string) {
     return await prisma.user.update({
       where: { id: userId },
       data: { role },
