@@ -2,7 +2,7 @@ import prisma from '../config/db';
 
 class PaymentRepository {
   async createPayment(
-    orderId: number,
+    orderId: string,
     amount: number,
     status: string,
     paymentGateway: string
@@ -30,7 +30,7 @@ class PaymentRepository {
     });
   }
 
-  async getPaymentsForOrder(orderId: number) {
+  async getPaymentsForOrder(orderId: string) {
     return await prisma.payment.findMany({
       where: { orderId },
     });

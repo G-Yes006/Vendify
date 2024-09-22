@@ -5,7 +5,7 @@ class OrderService {
     return await orderRepository.createOrder(userId, totalPrice);
   }
 
-  async addItemToOrder(orderId: number, productId: string, quantity: number) {
+  async addItemToOrder(orderId: string, productId: string, quantity: number) {
     return await orderRepository.addItemToOrder(orderId, productId, quantity);
   }
 
@@ -13,8 +13,12 @@ class OrderService {
     return await orderRepository.getOrdersByUserId(userId);
   }
 
-  async getOrderById(orderId: number) {
+  async getOrderById(orderId: string) {
     return await orderRepository.getOrderById(orderId);
+  }
+
+  async updateOrderStatus(orderId: string, status: string) {
+    return await orderRepository.updateOrderStatus(orderId, status);
   }
 }
 
