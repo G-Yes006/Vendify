@@ -2,7 +2,7 @@ import paymentRepository from '../repositories/paymentRepository';
 import { stripe } from '../config/stripe'; // Example for Stripe integration
 
 class PaymentService {
-  async createPaymentIntent(orderId: number, amount: number) {
+  async createPaymentIntent(orderId: string, amount: number) {
     // Integrate with payment gateway (Stripe in this case)
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount * 100, // convert to cents
