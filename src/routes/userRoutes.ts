@@ -16,7 +16,7 @@ import { authMiddleware } from '../middlewares/authMiddleware';
 const router = Router();
 
 router.post('/', validate(createUserSchema), createUser);
-router.get('/:userId', authMiddleware, getUserDetails);
+router.get('/info', authMiddleware, getUserDetails);
 router.post('/:userId/address', authMiddleware, addUserAddress);
 router.post('/:userId/activity', authMiddleware, logUserActivity);
 router.put('/role', validate(updateUserSchema), authMiddleware, updateUserRole);

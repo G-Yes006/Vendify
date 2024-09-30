@@ -14,7 +14,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const getUserDetails = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.params;
+    const { userId } = req.user;
     const userDetails = await userService.getUserDetails(userId);
     res.json(userDetails);
   } catch (err) {
