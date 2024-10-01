@@ -14,13 +14,11 @@ app.get('/health', async (req, res) => {
     await prisma.$queryRaw`SELECT 1`;
     res.status(200).json({ status: 'OK', database: 'Connected' });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        status: 'Failed',
-        database: 'Disconnected',
-        error: error.message,
-      });
+    res.status(500).json({
+      status: 'Failed',
+      database: 'Disconnected',
+      error: error.message,
+    });
   }
 });
 
