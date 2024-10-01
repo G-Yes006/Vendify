@@ -7,8 +7,7 @@ export const createUserSchema = Joi.object({
   role: Joi.string().valid('user', 'admin').optional(),
 });
 
-export const updateUserSchema = Joi.object({
-  name: Joi.string().optional(),
-  email: Joi.string().email().optional(),
-  password: Joi.string().min(8).optional(),
+export const updateUserRoleSchema = Joi.object({
+  role: Joi.string().required(),
+  userId: Joi.string().min(8).required(),
 });

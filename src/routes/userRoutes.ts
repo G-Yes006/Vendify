@@ -9,16 +9,17 @@ import {
 import { validate } from '../middlewares/validate';
 import {
   createUserSchema,
-  updateUserSchema,
+  updateUserRoleSchema,
 } from '../validations/userValidation';
 import { authMiddleware } from '../middlewares/authMiddleware';
+import { adminMiddleware } from '../middlewares/adminMiddleware';
 
 const router = Router();
 
 router.post('/', validate(createUserSchema), createUser);
 router.get('/info', authMiddleware, getUserDetails);
-router.post('/:userId/address', authMiddleware, addUserAddress);
-router.post('/:userId/activity', authMiddleware, logUserActivity);
-router.put('/role', validate(updateUserSchema), authMiddleware, updateUserRole);
+router.post('/address', authMiddleware, addUserAddress);
+router.post('/activity', authMiddleware, logUserActivity);
+router.put('/role', validate(updateUserRoleSchema), authMiddleware, adminMiddleware, updateUserRole);
 
 export default router;

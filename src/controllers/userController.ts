@@ -24,7 +24,7 @@ export const getUserDetails = async (req: Request, res: Response) => {
 
 export const addUserAddress = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.params;
+    const { userId } = req.user;
     const { type, addressData } = req.body;
     const address = await userService.addUserAddress(userId, type, addressData);
     res.status(201).json(address);
@@ -35,7 +35,7 @@ export const addUserAddress = async (req: Request, res: Response) => {
 
 export const logUserActivity = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.params;
+    const { userId } = req.user;
     const { action } = req.body;
     const log = await userService.logUserActivity(userId, action);
     res.status(201).json(log);
@@ -48,7 +48,12 @@ export const updateUserRole = async (req: Request, res: Response) => {
   try {
     const { userId, role } = req.body;
     const updatedUser = await userService.updateUserRole(userId, role);
-    res.json(updatedUser);
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found or update failed' });
+    }
+    const { password, ...userWithoutPassword } = updatedUser;
+    return res.status(200).json(userWithoutPassword);
+
   } catch (err) {
     handleError(res, err);
   }
