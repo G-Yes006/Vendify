@@ -20,6 +20,12 @@ router.post('/', validate(createUserSchema), createUser);
 router.get('/info', authMiddleware, getUserDetails);
 router.post('/address', authMiddleware, addUserAddress);
 router.post('/activity', authMiddleware, logUserActivity);
-router.put('/role', validate(updateUserRoleSchema), authMiddleware, adminMiddleware, updateUserRole);
+router.put(
+  '/role',
+  validate(updateUserRoleSchema),
+  authMiddleware,
+  adminMiddleware,
+  updateUserRole
+);
 
 export default router;

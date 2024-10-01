@@ -49,11 +49,12 @@ export const updateUserRole = async (req: Request, res: Response) => {
     const { userId, role } = req.body;
     const updatedUser = await userService.updateUserRole(userId, role);
     if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found or update failed' });
+      return res
+        .status(404)
+        .json({ message: 'User not found or update failed' });
     }
     const { password, ...userWithoutPassword } = updatedUser;
     return res.status(200).json(userWithoutPassword);
-
   } catch (err) {
     handleError(res, err);
   }
