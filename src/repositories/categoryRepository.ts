@@ -10,7 +10,7 @@ class CategoryRepository {
     return await prisma.category.create({ data: { name } });
   }
 
-  async deleteCategory(id: number): Promise<void> {
+  async deleteCategory(id: string): Promise<void> {
     await prisma.category.delete({ where: { id } });
   }
 }

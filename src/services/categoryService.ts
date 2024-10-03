@@ -10,7 +10,7 @@ class CategoryService {
     return await categoryRepository.createCategory(name);
   }
 
-  async deleteCategory(id: number): Promise<void> {
+  async deleteCategory(id: string): Promise<void> {
     return await categoryRepository.deleteCategory(id);
   }
 }
