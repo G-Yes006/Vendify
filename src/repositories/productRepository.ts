@@ -4,21 +4,21 @@ import { Product, Category, Variant } from '@prisma/client';
 class ProductRepository {
   async findAll(): Promise<Product[]> {
     return await prisma.product.findMany({
-      include: { variants: true, categories: true },
+      include: { variants: true, category: true },
     });
   }
 
   async findById(productId: string): Promise<Product | null> {
     return await prisma.product.findUnique({
       where: { id: productId },
-      include: { variants: true, categories: true },
+      include: { variants: true, category: true },
     });
   }
 
   async getProductById(productId: string) {
     return await prisma.product.findUnique({
       where: { id: productId },
-      include: { categories: true, tags: true },
+      include: { category: true, tags: true },
     });
   }
 
@@ -28,7 +28,7 @@ class ProductRepository {
     price: number;
     stock: number;
     images: string[];
-    categories: number[];
+    categoryId: string;
   }): Promise<Product> {
     return await prisma.product.create({
       data: {
@@ -37,9 +37,7 @@ class ProductRepository {
         price: data.price,
         stock: data.stock,
         images: data.images,
-        categories: {
-          connect: data.categories.map((categoryId) => ({ id: categoryId })),
-        },
+        categoryId: data.categoryId
       },
     });
   }

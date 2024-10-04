@@ -16,7 +16,7 @@ class ProductService {
     price: number;
     stock: number;
     images: string[];
-    categories: number[];
+    category: string;
   }): Promise<Product> {
     return await productRepository.createProduct(data);
   }

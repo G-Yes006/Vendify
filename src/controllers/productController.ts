@@ -14,7 +14,7 @@ export const getProducts = async (req: Request, res: Response) => {
 export const getProductById = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const product = await productService.getProductById(Number(productId));
+    const product = await productService.getProductById(productId);
     if (!product) return res.status(404).json({ message: 'Product not found' });
     res.json(product);
   } catch (err) {
@@ -24,14 +24,14 @@ export const getProductById = async (req: Request, res: Response) => {
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const { name, description, price, stock, images, categories } = req.body;
+    const { name, description, price, stock, images, categoryId } = req.body;
     const product = await productService.createProduct({
       name,
       description,
       price,
       stock,
       images,
-      categories,
+      categoryId,
     });
     res.status(201).json(product);
   } catch (err) {
@@ -44,7 +44,7 @@ export const updateProduct = async (req: Request, res: Response) => {
     const { productId } = req.params;
     const productData = req.body;
     const updatedProduct = await productService.updateProduct(
-      Number(productId),
+      productId,
       productData
     );
     res.json(updatedProduct);
@@ -56,8 +56,11 @@ export const updateProduct = async (req: Request, res: Response) => {
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    await productService.deleteProduct(Number(productId));
-    res.status(204).end();
+    await productService.deleteProduct(productId);
+    res.status(200).json({
+      success: true,
+      message: "Product has been deleted successfully"
+    });
   } catch (err) {
     handleError(res, err);
   }
