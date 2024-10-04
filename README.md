@@ -1,6 +1,6 @@
-# SuperKart
+# Vendify
 
-SuperKart is an enterprise-level inventory and e-commerce application built using Node.js, TypeScript, PostgreSQL, and Prisma ORM. It includes various features such as user authentication, product management, cart functionality, and order processing.
+Vendify is an enterprise-level inventory and e-commerce application built using Node.js, TypeScript, PostgreSQL, and Prisma ORM. It includes various features such as user authentication, product management, cart functionality, and order processing.
 
 ## Project Structure
 

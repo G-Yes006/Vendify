@@ -8,6 +8,7 @@ import {
 } from '../controllers/productController';
 import { authMiddleware } from '../middlewares/authMiddleware';
 import { validate } from '../middlewares/validate';
+import { adminMiddleware } from '../middlewares/adminMiddleware';
 import {
   createProductSchema,
   updateProductSchema,
@@ -17,13 +18,13 @@ const router = Router();
 
 router.get('/', getProducts);
 router.get('/:productId', getProductById);
-router.post('/', validate(createProductSchema), authMiddleware, createProduct);
+router.post('/', validate(createProductSchema), authMiddleware, adminMiddleware, createProduct);
 router.put(
   '/:productId',
   validate(updateProductSchema),
-  authMiddleware,
+  authMiddleware, adminMiddleware,
   updateProduct
 );
-router.delete('/:productId', authMiddleware, deleteProduct);
+router.delete('/:productId', authMiddleware, adminMiddleware, deleteProduct);
 
 export default router;

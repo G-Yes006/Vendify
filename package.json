@@ -1,6 +1,6 @@
 {
-  "name": "superkart",
-  "version": "0.0.1",
+  "name": "vendify",
+  "version": "0.0.3",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
