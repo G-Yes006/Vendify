@@ -27,8 +27,11 @@ export const removeItemFromCart = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
     const { productId } = req.params;
-    await cartService.removeItemFromCart(userId, Number(productId));
-    res.status(204).end();
+    await cartService.removeItemFromCart(userId, productId);
+    res.status(200).json({
+      success: true,
+      message: 'Item has been removed from the Cart',
+    });
   } catch (err) {
     handleError(res, err);
   }
@@ -38,7 +41,10 @@ export const clearCart = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
     await cartService.clearCart(userId);
-    res.status(204).end();
+    res.status(200).json({
+      success: true,
+      message: 'User cart has been cleared',
+    });
   } catch (err) {
     handleError(res, err);
   }

@@ -7,6 +7,7 @@ export const createOrderSchema = Joi.object({
       Joi.object({
         productId: Joi.string().uuid().required(),
         quantity: Joi.number().integer().min(1).required(),
+        price: Joi.number().integer().min(1).required(),
       })
     )
     .required(),
@@ -20,4 +21,5 @@ export const updateOrderStatusSchema = Joi.object({
   status: Joi.string()
     .valid('PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED')
     .required(),
+  orderId: Joi.string().uuid().required(),
 });

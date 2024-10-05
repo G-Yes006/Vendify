@@ -14,7 +14,8 @@ const router = Router();
 router.get('/', getCategories);
 router.post(
   '/',
-  authMiddleware, adminMiddleware,
+  authMiddleware,
+  adminMiddleware,
   validate(createCategorySchema),
   createCategory
 );

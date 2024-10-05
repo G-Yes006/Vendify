@@ -5,7 +5,7 @@ class OrderRepository {
     return await prisma.order.create({
       data: {
         userId,
-        total: orderData.total,
+        totalAmount: orderData.totalAmount,
         items: {
           create: orderData.items.map((item: any) => ({
             productId: item.productId,
