@@ -18,11 +18,18 @@ const router = Router();
 
 router.get('/', getProducts);
 router.get('/:productId', getProductById);
-router.post('/', validate(createProductSchema), authMiddleware, adminMiddleware, createProduct);
+router.post(
+  '/',
+  validate(createProductSchema),
+  authMiddleware,
+  adminMiddleware,
+  createProduct
+);
 router.put(
   '/:productId',
   validate(updateProductSchema),
-  authMiddleware, adminMiddleware,
+  authMiddleware,
+  adminMiddleware,
   updateProduct
 );
 router.delete('/:productId', authMiddleware, adminMiddleware, deleteProduct);

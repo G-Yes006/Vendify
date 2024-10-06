@@ -1,8 +1,8 @@
 import orderRepository from '../repositories/orderRepository';
 
 class OrderService {
-  async createOrder(userId: string, totalPrice: number) {
-    return await orderRepository.createOrder(userId, totalPrice);
+  async createOrder(userId: string, orderData: any) {
+    return await orderRepository.createOrder(userId, orderData);
   }
 
   async addItemToOrder(orderId: string, productId: string, quantity: number) {

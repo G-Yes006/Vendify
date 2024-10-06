@@ -18,7 +18,7 @@ class ProductRepository {
   async getProductById(productId: string) {
     return await prisma.product.findUnique({
       where: { id: productId },
-      include: { category: true, tags: true },
+      include: { category: true },
     });
   }
 
@@ -37,7 +37,7 @@ class ProductRepository {
         price: data.price,
         stock: data.stock,
         images: data.images,
-        categoryId: data.categoryId
+        categoryId: data.categoryId,
       },
     });
   }
