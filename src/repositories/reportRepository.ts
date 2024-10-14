@@ -8,7 +8,7 @@ class ReportRepository {
           gte: startDate,
           lte: endDate,
         },
-        status: 'Completed',
+        status: 'DELIVERED',
       },
       select: {
         id: true,

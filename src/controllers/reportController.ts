@@ -4,7 +4,7 @@ import { handleError } from '../utils/errorHandler';
 
 export const getSalesReport = async (req: Request, res: Response) => {
   try {
-    const { startDate, endDate } = req.query;
+    const { startDate, endDate } = req.body;
     const salesReport = await reportService.getSalesReport(
       new Date(startDate as string),
       new Date(endDate as string)
