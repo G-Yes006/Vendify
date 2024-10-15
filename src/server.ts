@@ -1,6 +1,7 @@
 import app from './app';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import { logSuccess, logError, logInfo, logWarn } from './utils/logUtils';
 
 dotenv.config();
 
@@ -26,32 +27,32 @@ app.get('/health', async (req, res) => {
 const startServer = async () => {
   try {
     await prisma.$connect();
-    console.log('PostgreSQL connected successfully using Prisma.');
+    logSuccess('PostgreSQL connected successfully using Prisma.');
 
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      logInfo(`Server running on port ${PORT}`);
     });
   } catch (error) {
-    console.error('Failed to connect to PostgreSQL using Prisma:', error);
-    process.exit(1);
+    logError(`Failed to connect to PostgreSQL using Prisma: ${error.message}`);
+    process.exit(1); // Exit on failure
   }
 };
 
 // Graceful Shutdown
 const gracefulShutdown = async () => {
-  console.log('Shutting down server...');
+  logWarn('Received shutdown signal. Shutting down server...');
   try {
     await prisma.$disconnect();
-    console.log('Prisma disconnected successfully.');
+    logWarn('Prisma disconnected successfully.');
     process.exit(0);
   } catch (error) {
-    console.error('Error during shutdown:', error);
+    logError(`Error during shutdown: ${error.message}`);
     process.exit(1);
   }
 };
 
 // Handle termination signals for graceful shutdown
-process.on('SIGINT', gracefulShutdown);
-process.on('SIGTERM', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);  // Ctrl+C signal
+process.on('SIGTERM', gracefulShutdown); // Termination signal
 
 startServer();
