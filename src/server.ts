@@ -52,7 +52,7 @@ const gracefulShutdown = async () => {
 };
 
 // Handle termination signals for graceful shutdown
-process.on('SIGINT', gracefulShutdown);  // Ctrl+C signal
+process.on('SIGINT', gracefulShutdown); // Ctrl+C signal
 process.on('SIGTERM', gracefulShutdown); // Termination signal
 
 startServer();
