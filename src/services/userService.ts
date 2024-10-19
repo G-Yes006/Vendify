@@ -1,14 +1,19 @@
 import userRepository from '../repositories/userRepository';
+import { comparePassword, hashPassword } from '../utils/bcryptUtils';
 
 class UserService {
   async createUser(name: string, email: string, password: string) {
     // Encrypt password (use bcrypt or similar)
-    const hashedPassword = await this.hashPassword(password);
+    const hashedPassword = await hashPassword(password);
     return await userRepository.createUser(name, email, hashedPassword);
   }
 
   async getUserDetails(userId: string) {
     return await userRepository.getUserById(userId);
+  }
+
+  async getUserById(userId:string){
+    return await userRepository.getUserByIdWithPassWord(userId)
   }
 
   async addUserAddress(userId: string, type: string, addressData: any) {
@@ -23,11 +28,21 @@ class UserService {
     return await userRepository.updateUserRole(userId, role);
   }
 
-  private async hashPassword(password: string): Promise<string> {
-    const bcrypt = require('bcrypt');
-    const saltRounds = 10;
-    return await bcrypt.hash(password, saltRounds);
+  async updatePassword(
+    userId: string,
+    currentPassword: string,
+    newPassword: string
+  ) {
+    const userData = await userRepository.getUserByIdWithPassWord(userId);
+    const isMatch = await comparePassword(currentPassword, userData.password);
+    if (!isMatch) {
+      return false;
+    }
+    const hashedPassword = await hashPassword(newPassword);
+    await userRepository.updatePassword(userId, hashedPassword);
+    return true;
   }
+
 }
 
 export default new UserService();
