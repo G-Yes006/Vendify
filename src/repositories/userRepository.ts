@@ -30,6 +30,15 @@ class UserRepository {
     });
   }
 
+  async getUserByIdWithPassWord(userId: string) {
+    return await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        password: true,
+      },
+    });
+  }
+
   async addUserAddress(userId: string, type: string, addressData: any) {
     return await prisma.address.create({
       data: {
@@ -53,6 +62,32 @@ class UserRepository {
     return await prisma.user.update({
       where: { id: userId },
       data: { role },
+    });
+  }
+
+  async updateUserProfile(
+    userId: string,
+    profileData: { name?: string; email?: string }
+  ) {
+    return await prisma.user.update({
+      where: { id: userId },
+      data: profileData,
+    });
+  }
+
+  async updatePassword(userId: string, newPassword: string) {
+    return await prisma.user.update({
+      where: { id: userId },
+      data: {
+        password: newPassword, // Assumes the password is already hashed before updating
+      },
+    });
+  }
+
+  async updateAddress(addressId: string, newAddressData: any) {
+    return await prisma.address.update({
+      where: { id: addressId },
+      data: newAddressData,
     });
   }
 }
