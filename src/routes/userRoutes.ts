@@ -5,11 +5,13 @@ import {
   addUserAddress,
   logUserActivity,
   updateUserRole,
+  updateUserPassword,
 } from '../controllers/userController';
 import { validate } from '../middlewares/validate';
 import {
   createUserSchema,
   updateUserRoleSchema,
+  updatePasswordSchema,
 } from '../validations/userValidation';
 import { authMiddleware } from '../middlewares/authMiddleware';
 import { adminMiddleware } from '../middlewares/adminMiddleware';
@@ -26,6 +28,13 @@ router.put(
   authMiddleware,
   adminMiddleware,
   updateUserRole
+);
+
+router.put(
+  '/updatePassword',
+  authMiddleware,
+  validate(updatePasswordSchema),
+  updateUserPassword
 );
 
 export default router;

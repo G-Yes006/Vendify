@@ -8,9 +8,11 @@ import reportRoutes from './routes/reportRoutes';
 import paymentRoutes from './routes/paymentRoutes';
 import authRoutes from './routes/authRoutes';
 import { authMiddleware } from './middlewares/authMiddleware';
+import { loggerMiddleware } from './middlewares/loggerMiddleware';
 const app = express();
 
 app.use(express.json());
+app.use(loggerMiddleware);
 
 app.use('/auth', authRoutes);
 app.use('/products', authMiddleware, productRoutes);
