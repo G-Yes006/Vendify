@@ -9,7 +9,6 @@ const prisma = new PrismaClient();
 
 const PORT = process.env.PORT || 5000;
 
-
 // Apply rate-limiting middleware globally (e.g., 100 requests per 15 minutes)
 app.use(rateLimiter(process.env.REQUEST_LIMIT, 15 * 60 * 1000));
 

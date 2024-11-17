@@ -3,7 +3,6 @@ import userService from '../services/userService';
 import { handleError } from '../utils/errorHandler';
 import { comparePassword, hashPassword } from '../utils/bcryptUtils';
 
-
 export const createUser = async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
@@ -75,7 +74,10 @@ export const updateUserPassword = async (req: Request, res: Response) => {
     }
 
     // Compare current password
-    const isPasswordValid = await comparePassword(currentPassword, user.password);
+    const isPasswordValid = await comparePassword(
+      currentPassword,
+      user.password
+    );
     if (!isPasswordValid) {
       return res.status(400).json({ message: 'Current password is incorrect' });
     }
@@ -83,7 +85,11 @@ export const updateUserPassword = async (req: Request, res: Response) => {
     // Check if the new password is the same as the current one
     const isSamePassword = await comparePassword(newPassword, user.password);
     if (isSamePassword) {
-      return res.status(400).json({ message: 'New password cannot be the same as the current password' });
+      return res
+        .status(400)
+        .json({
+          message: 'New password cannot be the same as the current password',
+        });
     }
 
     // If valid, update the password

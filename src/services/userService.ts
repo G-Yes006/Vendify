@@ -12,8 +12,8 @@ class UserService {
     return await userRepository.getUserById(userId);
   }
 
-  async getUserById(userId:string){
-    return await userRepository.getUserByIdWithPassWord(userId)
+  async getUserById(userId: string) {
+    return await userRepository.getUserByIdWithPassWord(userId);
   }
 
   async addUserAddress(userId: string, type: string, addressData: any) {
@@ -42,7 +42,6 @@ class UserService {
     await userRepository.updatePassword(userId, hashedPassword);
     return true;
   }
-
 }
 
 export default new UserService();
