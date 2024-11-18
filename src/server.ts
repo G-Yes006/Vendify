@@ -2,12 +2,15 @@ import app from './app';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import { logSuccess, logError, logInfo, logWarn } from './utils/logUtils';
-
+import rateLimiter from './utils/rateLimiter';
 dotenv.config();
 
 const prisma = new PrismaClient();
 
 const PORT = process.env.PORT || 5000;
+
+// Apply rate-limiting middleware globally (e.g., 100 requests per 15 minutes)
+app.use(rateLimiter(process.env.REQUEST_LIMIT, 15 * 60 * 1000));
 
 // Health Check Route for the API and Database
 app.get('/health', async (req, res) => {
