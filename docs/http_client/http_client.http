@@ -1,0 +1,88 @@
+@baseUrl = http://localhost:5000
+@userToken = <your_token>
+@adminToken = <admin_token>
+
+### User Signup
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "newuser@example.com",
+  "password": "password123",
+  "name": "New User"
+}
+
+###
+
+### User Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "newuser@example.com",
+  "password": "password123"
+}
+
+###
+
+### Create a new user
+POST {{baseUrl}}/users/
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+
+###
+
+### Get user details (Requires Authorization)
+GET {{baseUrl}}/users/info
+Authorization: Bearer {{userToken}}
+
+###
+
+### Add user address (Requires Authorization)
+POST {{baseUrl}}/users/address
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
+
+{
+  "address": "123 Main Street, Cityville, Countryland"
+}
+
+###
+
+### Log user activity (Requires Authorization)
+POST {{baseUrl}}/users/activity
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
+
+{
+  "activity": "User logged in"
+}
+
+###
+
+### Update user role (Requires Admin Authorization)
+PUT {{baseUrl}}/users/role
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "userId": "12345",
+  "role": "admin"
+}
+
+###
+
+### Update user password (Requires Authorization)
+PUT {{baseUrl}}/users/updatePassword
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
+
+{
+  "oldPassword": "password123",
+  "newPassword": "newPassword456"
+}
