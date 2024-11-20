@@ -1,88 +1,163 @@
 @baseUrl = http://localhost:5000
-@userToken = <your_token>
-@adminToken = <admin_token>
 
 ### User Signup
-POST {{baseUrl}}/auth/signup
+POST {{baseUrl}}/auth/signup 
 Content-Type: application/json
 
 {
-  "email": "newuser@example.com",
-  "password": "password123",
-  "name": "New User"
+    "email": "newuser@example.com",
+    "password": "password123",
+    "name": "New User"
 }
 
 ###
 
 ### User Login
-POST {{baseUrl}}/auth/login
+
+POST {{baseUrl}}/auth/login 
 Content-Type: application/json
 
 {
-  "email": "newuser@example.com",
-  "password": "password123"
+    "email": "newuser@example.com",
+    "password": "password123"
 }
 
 ###
 
 ### Create a new user
-POST {{baseUrl}}/users/
+
+POST {{baseUrl}}/users/ 
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "johndoe@example.com",
-  "password": "password123"
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "password123"
 }
 
 ###
 
 ### Get user details (Requires Authorization)
-GET {{baseUrl}}/users/info
+
+GET {{baseUrl}}/users/info 
 Authorization: Bearer {{userToken}}
 
 ###
 
 ### Add user address (Requires Authorization)
-POST {{baseUrl}}/users/address
+
+POST {{baseUrl}}/users/address 
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
 
 {
-  "address": "123 Main Street, Cityville, Countryland"
+    "address": "123 Main Street, Cityville, Countryland"
 }
 
 ###
 
 ### Log user activity (Requires Authorization)
-POST {{baseUrl}}/users/activity
+
+POST {{baseUrl}}/users/activity 
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
 
 {
-  "activity": "User logged in"
+    "activity": "User logged in"
 }
 
 ###
 
 ### Update user role (Requires Admin Authorization)
-PUT {{baseUrl}}/users/role
+
+PUT {{baseUrl}}/users/role 
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
 {
-  "userId": "12345",
-  "role": "admin"
+    "userId": "12345",
+    "role": "admin"
 }
 
 ###
 
 ### Update user password (Requires Authorization)
-PUT {{baseUrl}}/users/updatePassword
+
+PUT {{baseUrl}}/users/updatePassword 
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
 
 {
-  "oldPassword": "password123",
-  "newPassword": "newPassword456"
+    "oldPassword": "password123",
+    "newPassword": "newPassword456"
 }
+
+### Get all products
+
+GET {{baseUrl}}/products
+
+###
+
+### Get a single product by ID
+
+GET {{baseUrl}}/products/<productId>
+
+###
+
+### Create a new product (Requires Admin Authorization)
+
+POST {{baseUrl}}/products 
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+    "name": "New Product",
+    "description": "This is a test product.",
+    "price": 99.99,
+    "stock": 100
+}
+
+###
+
+### Update a product (Requires Admin Authorization)
+
+PUT {{baseUrl}}/products/<productId> 
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+    "name": "Updated Product Name",
+    "description": "Updated description for the product.",
+    "price": 119.99,
+    "stock": 150
+}
+
+###
+
+### Delete a product (Requires Admin Authorization)
+
+DELETE {{baseUrl}}/products/<productId> 
+Authorization: Bearer {{adminToken}}
+
+### Get all categories
+
+GET {{baseUrl}}/categories
+
+###
+
+### Create a new category (Requires Admin Authorization)
+
+POST {{baseUrl}}/categories 
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+    "name": "Electronics",
+    "description": "Category for electronic items."
+}
+
+###
+
+### Delete a category (Requires Admin Authorization)
+
+DELETE {{baseUrl}}/categories/<categoryId>
