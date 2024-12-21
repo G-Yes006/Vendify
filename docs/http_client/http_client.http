@@ -1,4 +1,3 @@
-@baseUrl = http://localhost:5000
 
 ### User Signup
 POST {{baseUrl}}/auth/signup 
@@ -41,7 +40,7 @@ Content-Type: application/json
 
 GET {{baseUrl}}/users/info 
 Authorization: Bearer {{userToken}}
-
+Content-Type: application/json
 ###
 
 ### Add user address (Requires Authorization)
@@ -95,12 +94,15 @@ Content-Type: application/json
 ### Get all products
 
 GET {{baseUrl}}/products
-
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
 ###
 
 ### Get a single product by ID
 
-GET {{baseUrl}}/products/<productId>
+GET {{baseUrl}}/products/{{productId}}
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
 
 ###
 
@@ -121,7 +123,7 @@ Content-Type: application/json
 
 ### Update a product (Requires Admin Authorization)
 
-PUT {{baseUrl}}/products/<productId> 
+PUT {{baseUrl}}/products/{{productId}} 
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
@@ -136,13 +138,15 @@ Content-Type: application/json
 
 ### Delete a product (Requires Admin Authorization)
 
-DELETE {{baseUrl}}/products/<productId> 
+DELETE {{baseUrl}}/products/{{productId}} 
 Authorization: Bearer {{adminToken}}
+Content-Type: application/json
 
 ### Get all categories
 
 GET {{baseUrl}}/categories
-
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
 ###
 
 ### Create a new category (Requires Admin Authorization)
@@ -160,4 +164,6 @@ Content-Type: application/json
 
 ### Delete a category (Requires Admin Authorization)
 
-DELETE {{baseUrl}}/categories/<categoryId>
+DELETE {{baseUrl}}/categories/{{categoryId}}
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json

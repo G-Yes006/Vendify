@@ -49,3 +49,6 @@ tsconfig.jest.json
 
 # Windows
 Thumbs.db
+
+# HTTP env
+.http.env
