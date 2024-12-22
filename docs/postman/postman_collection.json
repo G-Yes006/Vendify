@@ -1,1081 +1,975 @@
 {
-	"info": {
-		"_postman_id": "820c65d3-10eb-453a-b182-abc02ed6cb8a",
-		"name": "Vendify",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11849501"
-	},
-	"item": [
-		{
-			"name": "Auth",
-			"item": [
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"disabled": true
-							},
-							{
-								"key": "User-Agent",
-								"value": "Thunder Client (https://www.thunderclient.com)",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"email\": \"gyes00222@gmail.com\",\n  \"password\": \"asdf12345\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/auth/login",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Signup",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"G Yes\",\n  \"role\": \"user\",\n  \"email\": \"gyes00222@gmail.com\",\n  \"password\": \"asdf1234\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/auth/signup",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"auth",
-								"signup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/info",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Health",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"disabled": true
-							},
-							{
-								"key": "User-Agent",
-								"value": "Thunder Client (https://www.thunderclient.com)",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{url}}/health",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"health"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Product",
-			"item": [
-				{
-					"name": "Add Product",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Xenon\",\n  \"description\": \"A new great product\",\n  \"price\": 200,\n  \"stock\": 50,\n  \"images\": [\"image1.png\", \"image2.png\"],\n  \"categoryId\": \"5dc4f9b8-1831-4777-b3c8-8f98c82934ff\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/products",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"products"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Product",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Lenin\",\n  \"description\": \"A great product\",\n  \"price\": 350,\n  \"stock\": 500,\n  \"images\": [\"image1.png\", \"image2.png\"],\n  \"categoryId\": \"5dc4f9b8-1831-4777-b3c8-8f98c82934ff\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/products/42391541-7f27-421c-a6ee-68cc333102df",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"products",
-								"42391541-7f27-421c-a6ee-68cc333102df"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Products",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/products",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"products"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Product by Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/products/42391541-7f27-421c-a6ee-68cc333102df",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"products",
-								"42391541-7f27-421c-a6ee-68cc333102df"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Product by Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/products/cc669b2a-ffe0-46be-8acf-a3061db84fe6",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"products",
-								"cc669b2a-ffe0-46be-8acf-a3061db84fe6"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Category",
-			"item": [
-				{
-					"name": "List Categories",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/categories",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"categories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Category",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/categories/e54c6695-ee08-477d-b1fe-ae7b529f4d91",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"categories",
-								"e54c6695-ee08-477d-b1fe-ae7b529f4d91"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Category",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Jeans\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/categories",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"categories"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Admin",
-					"item": [
-						{
-							"name": "role",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"role\": \"admin\",\n  \"userId\": \"05f849d5-11b5-45ba-b1da-edc925513ebe\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/users/role",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"users",
-										"role"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "User Info",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"G Yes\",\n  \"role\": \"user\",\n  \"email\": \"gyes00234@gmail.com\",\n  \"password\": \"asdf1234\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/users/info",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "address",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"type\": \"billing\",\n  \"addressData\": {\n    \"address\": \"#33\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"country\": \"India\",\n    \"zipCode\": \"560037\"\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/users/address",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"address"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "activity",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"action\": \"login\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/users/activity",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"activity"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Password",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"currentPassword\": \"asdf1234\",\n  \"newPassword\":\"asdf12345\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/users/updatePassword",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"updatePassword"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Cart",
-			"item": [
-				{
-					"name": "cart",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/cart",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"cart"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add to Cart",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"productId\": \"42391541-7f27-421c-a6ee-68cc333102df\", \"quantity\": 1 } ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/cart/add",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"cart",
-								"add"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Remove an Item from cart",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/cart/remove/42391541-7f27-421c-a6ee-68cc333102df",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"cart",
-								"remove",
-								"42391541-7f27-421c-a6ee-68cc333102df"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Clear cart",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/cart/clear",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"cart",
-								"clear"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Orders",
-			"item": [
-				{
-					"name": "Get Orders",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/orders",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"orders"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Place Order",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": \"05f849d5-11b5-45ba-b1da-edc925513ebe\",\n    \"items\": [\n        {\n            \"productId\": \"42391541-7f27-421c-a6ee-68cc333102df\",\n            \"quantity\": 1,\n            \"price\": 50\n        }\n    ],\n    \"totalAmount\": 50\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/orders",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"orders"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Order Status",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"orderId\": \"d06ce068-7734-465a-a4ec-ffa1e097fcbf\",\n  \"status\": \"DELIVERED\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/orders/status",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"orders",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Order By Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/orders/d06ce068-7734-465a-a4ec-ffa1e097fcbf",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"orders",
-								"d06ce068-7734-465a-a4ec-ffa1e097fcbf"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Reports",
-			"item": [
-				{
-					"name": "Get Sales Report",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"startDate\": \"2024-10-01\",\r\n    \"endDate\": \"2024-10-06\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/reports/sales",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"reports",
-								"sales"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Inventory Report",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/reports/inventory",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"reports",
-								"inventory"
-							],
-							"query": [
-								{
-									"key": "startDate",
-									"value": "2024-10-01",
-									"disabled": true
-								},
-								{
-									"key": "endDate",
-									"value": "2024-10-06",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Users Report",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/reports/users",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"reports",
-								"users"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"variable": [
-		{
-			"key": "url",
-			"value": "http://localhost:5000"
-		}
-	]
+  "info": {
+    "_postman_id": "820c65d3-10eb-453a-b182-abc02ed6cb8a",
+    "name": "Vendify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11849501"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"gyes00222@gmail.com\",\n  \"password\": \"asdf12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"G Yes\",\n  \"role\": \"user\",\n  \"email\": \"gyes00222@gmail.com\",\n  \"password\": \"asdf1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "auth", "signup"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/users/info",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "users", "info"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "Add Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Xenon\",\n  \"description\": \"A new great product\",\n  \"price\": 200,\n  \"stock\": 50,\n  \"images\": [\"image1.png\", \"image2.png\"],\n  \"categoryId\": \"5dc4f9b8-1831-4777-b3c8-8f98c82934ff\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Lenin\",\n  \"description\": \"A great product\",\n  \"price\": 350,\n  \"stock\": 500,\n  \"images\": [\"image1.png\", \"image2.png\"],\n  \"categoryId\": \"5dc4f9b8-1831-4777-b3c8-8f98c82934ff\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/products/42391541-7f27-421c-a6ee-68cc333102df",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "products",
+                "42391541-7f27-421c-a6ee-68cc333102df"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Products",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/products/42391541-7f27-421c-a6ee-68cc333102df",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "products",
+                "42391541-7f27-421c-a6ee-68cc333102df"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product by Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/products/cc669b2a-ffe0-46be-8acf-a3061db84fe6",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "products",
+                "cc669b2a-ffe0-46be-8acf-a3061db84fe6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "List Categories",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/categories/e54c6695-ee08-477d-b1fe-ae7b529f4d91",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "categories",
+                "e54c6695-ee08-477d-b1fe-ae7b529f4d91"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jeans\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "{{version}}", "categories"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Admin",
+          "item": [
+            {
+              "name": "role",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"admin\",\n  \"userId\": \"05f849d5-11b5-45ba-b1da-edc925513ebe\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/{{version}}/users/role",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["{{version}}", "users", "role"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "User Info",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"G Yes\",\n  \"role\": \"user\",\n  \"email\": \"gyes00234@gmail.com\",\n  \"password\": \"asdf1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/users/info",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "users", "info"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "address",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"billing\",\n  \"addressData\": {\n    \"address\": \"#33\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"country\": \"India\",\n    \"zipCode\": \"560037\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/users/address",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "users", "address"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "activity",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"login\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/users/activity",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "users", "activity"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"asdf1234\",\n  \"newPassword\":\"asdf12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/users/updatePassword",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "users", "updatePassword"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/cart",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "cart"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add to Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"productId\": \"42391541-7f27-421c-a6ee-68cc333102df\", \"quantity\": 1 } ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/cart/add",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "cart", "add"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove an Item from cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/cart/remove/42391541-7f27-421c-a6ee-68cc333102df",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "cart",
+                "remove",
+                "42391541-7f27-421c-a6ee-68cc333102df"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Clear cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/cart/clear",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "cart", "clear"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get Orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Place Order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"05f849d5-11b5-45ba-b1da-edc925513ebe\",\n    \"items\": [\n        {\n            \"productId\": \"42391541-7f27-421c-a6ee-68cc333102df\",\n            \"quantity\": 1,\n            \"price\": 50\n        }\n    ],\n    \"totalAmount\": 50\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"d06ce068-7734-465a-a4ec-ffa1e097fcbf\",\n  \"status\": \"DELIVERED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/orders/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "orders", "status"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order By Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/orders/d06ce068-7734-465a-a4ec-ffa1e097fcbf",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "orders",
+                "d06ce068-7734-465a-a4ec-ffa1e097fcbf"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Get Sales Report",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"startDate\": \"2024-10-01\",\r\n    \"endDate\": \"2024-10-06\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/reports/sales",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "reports", "sales"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Inventory Report",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/reports/inventory",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "reports", "inventory"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2024-10-01",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-10-06",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Users Report",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI2OTE1MzQ0LCJleHAiOjE3MjY5MTg5NDR9.IEA2FF9rn2Xrp4Hpo0D2rsP8ayYP5UyDvAovrrKWsHQ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/reports/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "reports", "users"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "version",
+      "value": "v1",
+      "type": "string"
+    }
+  ]
 }

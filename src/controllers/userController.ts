@@ -85,11 +85,9 @@ export const updateUserPassword = async (req: Request, res: Response) => {
     // Check if the new password is the same as the current one
     const isSamePassword = await comparePassword(newPassword, user.password);
     if (isSamePassword) {
-      return res
-        .status(400)
-        .json({
-          message: 'New password cannot be the same as the current password',
-        });
+      return res.status(400).json({
+        message: 'New password cannot be the same as the current password',
+      });
     }
 
     // If valid, update the password
