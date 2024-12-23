@@ -9,26 +9,16 @@ dotenv.config();
 const prisma = new PrismaClient();
 
 const PORT = process.env.PORT || 5000;
+const REQUEST_LIMIT = Number(process.env.REQUEST_LIMIT) || 100;
+const DELAY_THRESHOLD = Number(process.env.DELAY_THRESHOLD) || 500;
+const DELAY_INCREMENT = Number(process.env.DELAY_INCREMENT) || 100;
+// Apply rate-limiting middleware globally
+app.use(rateLimiter(REQUEST_LIMIT, 15 * 60 * 1000));
 
-// Apply rate-limiting middleware globally (e.g., 100 requests per 15 minutes)
-app.use(rateLimiter(process.env.REQUEST_LIMIT, 15 * 60 * 1000));
-
-// Apply request smoothing: DELAY_THRESHOLD = 500ms, delay DELAY_INCREMENT = 100ms
-app.use(requestRateSmoothing(process.env.DELAY_THRESHOLD, process.env.DELAY_INCREMENT));
+// Apply request smoothing
+app.use(requestRateSmoothing(DELAY_THRESHOLD, DELAY_INCREMENT));
 
 // Health Check Route for the API and Database
-app.get('/health', async (req, res) => {
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    res.status(200).json({ status: 'OK', database: 'Connected' });
-  } catch (error) {
-    res.status(500).json({
-      status: 'Failed',
-      database: 'Disconnected',
-      error: error.message,
-    });
-  }
-});
 
 // Function to start the server and connect to PostgreSQL
 const startServer = async () => {
@@ -40,8 +30,10 @@ const startServer = async () => {
       logInfo(`Server running on port ${PORT}`);
     });
   } catch (error) {
-    logError(`Failed to connect to PostgreSQL using Prisma: ${error.message}`);
-    process.exit(1); // Exit on failure
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown connection error';
+    logError(`Failed to connect to PostgreSQL using Prisma: ${errorMessage}`);
+    process.exit(1);
   }
 };
 
@@ -53,13 +45,15 @@ const gracefulShutdown = async () => {
     logWarn('Prisma disconnected successfully.');
     process.exit(0);
   } catch (error) {
-    logError(`Error during shutdown: ${error.message}`);
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown shutdown error';
+    logError(`Error during shutdown: ${errorMessage}`);
     process.exit(1);
   }
 };
 
 // Handle termination signals for graceful shutdown
-process.on('SIGINT', gracefulShutdown); // Ctrl+C signal
-process.on('SIGTERM', gracefulShutdown); // Termination signal
+process.on('SIGINT', gracefulShutdown);
+process.on('SIGTERM', gracefulShutdown);
 
 startServer();
