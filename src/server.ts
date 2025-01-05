@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { logSuccess, logError, logInfo, logWarn } from './utils/logUtils';
 import rateLimiter from './utils/rateLimiter';
 import requestRateSmoothing from './utils/requestRateSmoothing';
+import { initializeDatabase } from './config/db';
 dotenv.config();
 
 const prisma = new PrismaClient();
@@ -18,21 +19,18 @@ app.use(rateLimiter(REQUEST_LIMIT, 15 * 60 * 1000));
 // Apply request smoothing
 app.use(requestRateSmoothing(DELAY_THRESHOLD, DELAY_INCREMENT));
 
-// Health Check Route for the API and Database
 
-// Function to start the server and connect to PostgreSQL
+// Function to start the server and connect to database
 const startServer = async () => {
   try {
-    await prisma.$connect();
-    logSuccess('PostgreSQL connected successfully using Prisma.');
+    await initializeDatabase();
 
     app.listen(PORT, () => {
       logInfo(`Server running on port ${PORT}`);
     });
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Unknown connection error';
-    logError(`Failed to connect to PostgreSQL using Prisma: ${errorMessage}`);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    logError(`Server startup failed: ${errorMessage}`);
     process.exit(1);
   }
 };
