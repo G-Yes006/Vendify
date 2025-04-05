@@ -32,7 +32,7 @@
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.9.15",
     "prisma": "^6.0.0",
-    "stripe": "^17.0.0"
+    "stripe": "^18.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
