@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -13,7 +13,7 @@ model Product {
   description String?
   price       Float
   stock       Int
-  images      String
+  images      String[]
   variants    Variant[]
   categoryId  String
   category    Category   @relation(fields: [categoryId], references: [id])
@@ -57,7 +57,7 @@ model Order {
   userId      String
   items       OrderItem[]
   totalAmount Float
-  status      String
+  status      OrderStatus @default(PENDING)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   
@@ -131,4 +131,12 @@ model Report {
   id         String   @id @default(uuid())
   type       String
   generatedAt DateTime @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
 }
