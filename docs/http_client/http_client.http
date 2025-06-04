@@ -1,51 +1,36 @@
-
 ### User Signup
-POST {{baseUrl}}/auth/signup 
+POST {{baseUrl}}/api/v1/auth/signup 
 Content-Type: application/json
 
 {
     "email": "newuser@example.com",
     "password": "password123",
-    "name": "New User"
+    "name": "New User",
+    "role": "user"
 }
 
 ###
 
 ### User Login
-
-POST {{baseUrl}}/auth/login 
+POST {{baseUrl}}/api/v1/auth/login 
 Content-Type: application/json
 
 {
     "email": "newuser@example.com",
-    "password": "password123"
-}
-
-###
-
-### Create a new user
-
-POST {{baseUrl}}/users/ 
-Content-Type: application/json
-
-{
-    "name": "John Doe",
-    "email": "johndoe@example.com",
     "password": "password123"
 }
 
 ###
 
 ### Get user details (Requires Authorization)
-
-GET {{baseUrl}}/users/info 
+GET {{baseUrl}}/api/v1/users/info 
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
+
 ###
 
 ### Add user address (Requires Authorization)
-
-POST {{baseUrl}}/users/address 
+POST {{baseUrl}}/api/v1/users/address 
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
 
@@ -56,8 +41,7 @@ Content-Type: application/json
 ###
 
 ### Log user activity (Requires Authorization)
-
-POST {{baseUrl}}/users/activity 
+POST {{baseUrl}}/api/v1/users/activity 
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
 
@@ -68,8 +52,7 @@ Content-Type: application/json
 ###
 
 ### Update user role (Requires Admin Authorization)
-
-PUT {{baseUrl}}/users/role 
+PUT {{baseUrl}}/api/v1/users/role 
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
@@ -81,8 +64,7 @@ Content-Type: application/json
 ###
 
 ### Update user password (Requires Authorization)
-
-PUT {{baseUrl}}/users/updatePassword 
+PUT {{baseUrl}}/api/v1/users/updatePassword 
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
 
@@ -91,24 +73,24 @@ Content-Type: application/json
     "newPassword": "newPassword456"
 }
 
-### Get all products
+###
 
-GET {{baseUrl}}/products
+### Get all products
+GET {{baseUrl}}/api/v1/products
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
+
 ###
 
 ### Get a single product by ID
-
-GET {{baseUrl}}/products/{{productId}}
+GET {{baseUrl}}/api/v1/products/{{productId}}
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
 
 ###
 
 ### Create a new product (Requires Admin Authorization)
-
-POST {{baseUrl}}/products 
+POST {{baseUrl}}/api/v1/products 
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
@@ -122,8 +104,7 @@ Content-Type: application/json
 ###
 
 ### Update a product (Requires Admin Authorization)
-
-PUT {{baseUrl}}/products/{{productId}} 
+PUT {{baseUrl}}/api/v1/products/{{productId}} 
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
@@ -137,21 +118,21 @@ Content-Type: application/json
 ###
 
 ### Delete a product (Requires Admin Authorization)
-
-DELETE {{baseUrl}}/products/{{productId}} 
+DELETE {{baseUrl}}/api/v1/products/{{productId}} 
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
-### Get all categories
+###
 
-GET {{baseUrl}}/categories
+### Get all categories
+GET {{baseUrl}}/api/v1/categories
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
+
 ###
 
 ### Create a new category (Requires Admin Authorization)
-
-POST {{baseUrl}}/categories 
+POST {{baseUrl}}/api/v1/categories 
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
@@ -163,7 +144,6 @@ Content-Type: application/json
 ###
 
 ### Delete a category (Requires Admin Authorization)
-
-DELETE {{baseUrl}}/categories/{{categoryId}}
+DELETE {{baseUrl}}/api/v1/categories/{{categoryId}}
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
