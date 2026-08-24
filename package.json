@@ -41,7 +41,7 @@
     "@types/helmet": "^4.0.0",
     "@types/joi": "^17.2.2",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/nodemailer": "^7.0.0",
+    "@types/nodemailer": "^8.0.0",
     "@types/stripe": "^8.0.416",
     "@typescript-eslint/eslint-plugin": "^8.5.0",
     "@typescript-eslint/parser": "^8.5.0",
